@@ -1,0 +1,22 @@
+.table-element-container {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	flex-grow: 1;
+}
+
+.table-element {
+	background-color: #363636;
+	max-width: 1400px;
+	width: 90%;
+}
+
+.table-element-cell {
+	font-size: 1rem;
+	padding: .5rem 1rem .5rem .25rem;
+}
+
+.table-element-cell-button {
+	background-color: transparent;
+	border: none;
+}
