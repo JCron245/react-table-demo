@@ -6,7 +6,7 @@ import {
   Route
 } from "react-router-dom";
 import { RestaurantDetail } from './components/RestaurantDetail/RestaurantDetail';
-import { RestaurantTable } from './components/RestaurantTable/RestaurantTable';
+import RestaurantTable from './components/RestaurantTable/RestaurantTable';
 
 function App() {
   return (
