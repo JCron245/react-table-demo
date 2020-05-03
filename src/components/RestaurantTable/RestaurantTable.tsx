@@ -22,7 +22,9 @@ const RestaurantTable = () => {
 
   const onSort = (sort: string) => {
     if (sort) {
-      setSortAscending(!sortAscending);
+      // If we sort by the same property again flip the sort around,
+      // otherwise reset to ascending order
+      setSortAscending(sort === sortName ? !sortAscending : true);
       setSortName(sort);
     }
   }
