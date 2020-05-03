@@ -1,52 +1,83 @@
 import React from "react";
 import { RestaurantData } from "../../api/interface";
+import "./table.scss";
 
 export interface TableElementProps {
-    data: RestaurantData[];
-    onSort: any;
+	/**
+	 * Which properties from the data we want to show in the table ui (which columns to show)
+	 */
+	columnKeys: string[];
+	/**
+	 * The data to be represented
+	 */
+	data: RestaurantData[];
+	/**
+	 * on sort call
+	 */
+	onSort: any;
+	/**
+	 * on filter call
+	 */
+	onFilter: any;
+	/**
+	 * Limit of items to show per page
+	 */
+	paginationLimit?: number;
 }
 
 const TableElement = (props: TableElementProps) => {
-  const { data, onSort } = props;
+	const { columnKeys, data, paginationLimit: limit, onSort } = props;
 
-  const CreateRows = () => {
-    return data?.map((item: RestaurantData) => {
-      return (
-        <tr key={item.id}>
-          <td>{item.name}</td>
-          <td>{item.city}</td>
-          <td>{item.state}</td>
-          <td>{item.telephone}</td>
-          <td>{item.genre}</td>
-        </tr>
-      );
-    });
-  };
+	const createHeaderCells = (): JSX.Element[] => {
+		return columnKeys.map((key: string) => {
+			return (
+				<th className={"table-element-cell-header"} key={`header-${key}`}>
+					<button
+						className={"table-element-cell-button"}
+						onClick={() => onSort(key)}
+					>
+						{key}
+					</button>
+				</th>
+			);
+		});
+	};
 
-  return (
-    <table>
-      <thead>
-        <tr>
-          <th>
-            <button onClick={() => onSort("name")}>Name</button>
-          </th>
-          <th>
-            <button onClick={() => onSort("city")}>City</button>
-          </th>
-          <th>
-            <button onClick={() => onSort("state")}>State</button>
-          </th>
-          <th>
-            <button onClick={() => onSort("telephone")}>Phone #</button>
-          </th>
-          <th>
-            <button onClick={() => onSort("genre")}>Genre</button>
-          </th>
-        </tr>
-      </thead>
-      <tbody>{CreateRows()}</tbody>
-    </table>
-  );
+	const createHeader = () => {
+		return <tr className={"table-element-head-row"}>{createHeaderCells()}</tr>;
+	};
+
+	const createRows = () => {
+		let rowData = data;
+		if (limit) {
+			rowData = rowData.slice(0, limit + 1);
+		}
+		return rowData?.map((item: any) => {
+			return (
+				<tr className={"table-element-row"} key={item.id}>
+					{columnKeys.map((key: string) => {
+						return (
+							<td
+								key={`cell-${item.id}-${item[key]}`}
+								className={"table-element-cell"}
+							>
+								{item[key]}
+							</td>
+						);
+					})}
+				</tr>
+			);
+		});
+	};
+
+	return (
+		<section className={"table-element-container"}>
+			<table className={"table-element"}>
+				<thead className={"table-element-head"}>{createHeader()}</thead>
+				<tbody className={"table-element-body"}>{createRows()}</tbody>
+			</table>
+		</section>
+	);
 };
 
 export default TableElement;
