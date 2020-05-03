@@ -1,44 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Table Demo
 
-## Available Scripts
 
-In the project directory, you can run:
+## [Reboot.scss](https://getbootstrap.com/docs/4.0/content/reboot/)
+I work with Bootstrap quite a bit but for this project I am only using their reboot file. I like the defaults it sets for elements and how they behave, particularly I enjoy the 'border-box' applied to everything. I felt that using all of bootstrap was a bit overkill for the size of this demo and the table styling felt like it might violate the spirit of the challenge :D
 
-### `npm start`
+In Bootstraps own words:
+> Reboot, a collection of element-specific CSS changes in a single file, kickstart Bootstrap to provide an elegant, consistent, and simple baseline to build upon.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+>Reboot builds upon Normalize, providing many HTML elements with somewhat opinionated styles using only element selectors.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
+While I didn't necessarily need React Router. I needed the ability to switch to a "detail" view on click and since React Router is the most popular way to handle routing with React it seemed like a good opportunity to use it.
