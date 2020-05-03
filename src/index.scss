@@ -14,11 +14,15 @@
  html,
  body,
  #root {
+   background-color: #333;
+   color: #FAFAFA;
    font-size: 16px;
    height: 100%;
-   max-height: 100vh;
-   max-width: 100vw;
    width: 100%;
+ }
+
+ #root {
+   border: 1px solid red;
  }
  
  body {
