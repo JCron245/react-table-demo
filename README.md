@@ -11,3 +11,6 @@ In Bootstraps own words:
 
 ## [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
 While I didn't necessarily need React Router. I needed the ability to switch to a "detail" view on click and since React Router is the most popular way to handle routing with React it seemed like a good opportunity to use it.
+
+## [EditorConfig](https://editorconfig.org/)
+Editor Config provides a way to enforce consistent coding styles across multiple IDE's and environments fairly easily.
