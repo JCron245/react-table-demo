@@ -1,0 +1,23 @@
+.filters {
+	align-items: center;
+	background-color: #444;
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	padding: 1rem;
+	.search-label {
+		margin-bottom: 0;
+		text-align: center;
+		width: 25%;
+	}
+	.search-input {
+		margin-left: 1rem;
+	}
+	.filter {
+		padding-right: 1.5rem;
+		width: 25%;
+	}
+	.filter-menu {
+		font-weight: bold;
+	}
+}

@@ -2,7 +2,7 @@ export interface RestaurantData {
     address1: string;
     attire: string;
     city: string;
-    genre: string;
+    genre: string[] | string;
     hours: string;
     id: string;
     lat: string;

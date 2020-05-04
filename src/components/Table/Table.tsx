@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { RestaurantData } from "../../api/interface";
 import "./table.scss";
@@ -16,23 +17,20 @@ export interface TableElementProps {
 	 */
 	onSort: any;
 	/**
-	 * on filter call
-	 */
-	onFilter: any;
-	/**
 	 * Limit of items to show per page
 	 */
 	paginationLimit?: number;
 }
 
 const TableElement = (props: TableElementProps) => {
-	const { columnKeys, data, paginationLimit: limit, onSort } = props;
+	const { columnKeys, data, paginationLimit, onSort } = props;
 
 	const createHeaderCells = (): JSX.Element[] => {
 		return columnKeys.map((key: string) => {
 			return (
 				<th className={"table-element-cell-header"} key={`header-${key}`}>
 					<button
+						title={`Sort by ${key}`}
 						className={"table-element-cell-button"}
 						onClick={() => onSort(key)}
 					>
@@ -49,8 +47,8 @@ const TableElement = (props: TableElementProps) => {
 
 	const createRows = () => {
 		let rowData = data;
-		if (limit) {
-			rowData = rowData.slice(0, limit + 1);
+		if (paginationLimit) {
+			rowData = rowData.slice(0, paginationLimit + 1);
 		}
 		return rowData?.map((item: any) => {
 			return (
@@ -58,10 +56,11 @@ const TableElement = (props: TableElementProps) => {
 					{columnKeys.map((key: string) => {
 						return (
 							<td
-								key={`cell-${item.id}-${item[key]}`}
+								key={`${item.id}-${item[key]}`}
 								className={"table-element-cell"}
 							>
-								{item[key]}
+								{/* make sure genre array gets stringified */}
+								{item[key].toString()}
 							</td>
 						);
 					})}

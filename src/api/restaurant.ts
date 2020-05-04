@@ -13,9 +13,15 @@ export const getRestaurantData = (): Promise<RestaurantData[]> => {
       } else {
         return [];
       }
-    })
+		})
+		.then(res => {
+			res.forEach( (item: RestaurantData) => {
+				item.genre = (item.genre as string).split(',');
+			});
+			return res;
+		})
     .catch((e) => {
-      console.error("[ERROR] error retrieving restaurant data");
+      console.error("[ERROR] error retrieving restaurant data: ", e);
       return [];
     });
 };
