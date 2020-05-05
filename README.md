@@ -1,11 +1,9 @@
 # Table Demo
+[react-table-demo link](https://joncornwelldemo.com)
+
 
 ## Getting Started
 To get the project up and running:
-
-### Prerequisites
-
-- `>= Node 10.0.0`
 
 ### Installing
 
