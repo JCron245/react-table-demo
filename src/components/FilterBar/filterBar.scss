@@ -9,7 +9,7 @@
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		width: 25%;
+		width: 23%;
 	}
 	.search-label {
 		margin-bottom: 0;
@@ -21,22 +21,61 @@
 	.search-btn {
 		background-color: var(--accent);
 		border: none;
-		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: var(--box-shadow);
 		color: var(--subtext);
 		font-size: 1rem;
 		min-width: 6ch;
+		padding: 0.2rem 1rem;
 		width: 30%;
+	}
+	.reset-container {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+		width: 5%;
+	}
+	.reset-btn {
+		background-color: var(--accent);
+		border: none;
+		box-shadow: var(--box-shadow);
+		color: var(--subtext);
+		font-size: 1rem;
+		min-width: 6ch;
+		padding: 0.2rem 1rem;
 	}
 	.filter {
 		padding-right: 1.5rem;
-		width: 25%;
+		width: 24%;
+	}
+	.filter-arrow {
+		border-color: var(--text) transparent transparent;
 	}
 	.filter-main {
-		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+		background-color: var(--accent);
+		border: none;
+		box-shadow: var(--box-shadow);
+		color: var(--text);
 		cursor: pointer;
 	}
 	.filter-menu {
-		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+		box-shadow: var(--box-shadow);
 		font-weight: bold;
+	}
+	@media only screen and (max-width: 600px) {
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+		.filter {
+			padding-right: 0;
+			width: 100%;
+		}
+		.search-container {
+			margin-top: 1rem;
+			width: 100%;
+		}
+		.reset-container {
+			margin-top: 1rem;
+			width: 100%;
+		}
 	}
 }

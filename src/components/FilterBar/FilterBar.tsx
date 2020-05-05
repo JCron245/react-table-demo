@@ -74,6 +74,13 @@ const FilterBar = (props: FilterBarProps) => {
 
 	const enterPress = () => onSearch(searchFilter);
 
+	const restFilters = () => {
+		setAttireFilter({ label: 'Filter By Attire', value: '' });
+		setGenreFilter({ label: 'Filter By Genre', value: '' });
+		setStateFilter({ label: 'Filter By State', value: '' });
+		setSearchFilter('');
+	};
+
 	return (
 		<form className={'filters'}>
 			<Dropdown
@@ -85,6 +92,7 @@ const FilterBar = (props: FilterBarProps) => {
 				menuClassName={'filter-menu'}
 				className={'filter'}
 				onChange={setStateFilter}
+				arrowClassName={'filter-arrow'}
 				value={stateFilter}
 			/>
 			<Dropdown
@@ -96,6 +104,7 @@ const FilterBar = (props: FilterBarProps) => {
 				menuClassName={'filter-menu'}
 				className={'filter'}
 				onChange={setGenreFilter}
+				arrowClassName={'filter-arrow'}
 				value={genreFilter}
 			/>
 			<Dropdown
@@ -107,6 +116,7 @@ const FilterBar = (props: FilterBarProps) => {
 				menuClassName={'filter-menu'}
 				className={'filter'}
 				onChange={setAttireFilter}
+				arrowClassName={'filter-arrow'}
 				value={attireFilter}
 			/>
 			<div className={'search-container'}>
@@ -122,6 +132,11 @@ const FilterBar = (props: FilterBarProps) => {
 				</label>
 				<button type="button" onClick={enterPress} className={'search-btn'}>
 					Search
+				</button>
+			</div>
+			<div className={'reset-container'}>
+				<button type="button" onClick={restFilters} className={'reset-btn'}>
+					Reset
 				</button>
 			</div>
 		</form>

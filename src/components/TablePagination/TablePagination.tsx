@@ -11,7 +11,7 @@ const TablePagination = (props: TablePaginationProps) => {
 		const boxes = [];
 		for (let i = 0; i < pages; i++) {
 			boxes.push(
-				<button onClick={() => onPageSet(i)} className={'page-btn page-box-btn'}>
+				<button key={`box-button-${i}`} onClick={() => onPageSet(i)} className={'page-btn page-box-btn'}>
 					{i + 1}
 				</button>
 			);
