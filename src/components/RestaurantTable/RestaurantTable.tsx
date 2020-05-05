@@ -19,12 +19,13 @@ const RestaurantTable = () => {
 	/**
 	 * These are the columns to show
 	 */
-	const [columnKeys] = useState(['name', 'city', 'state', 'telephone', 'genre']);
+	const [columnKeys, setColumnKeys] = useState<string[]>();
 
 	/**
 	 * On component mount we will get the data
 	 */
 	useEffect(() => {
+		setColumnKeys(['name', 'city', 'state', 'telephone', 'genre']);
 		getRestaurantData().then((res: RestaurantData[]) => {
 			setData(res);
 			setFilteredData(res);

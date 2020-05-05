@@ -1,8 +1,8 @@
 export interface TablePaginationProps {
 	currentPage: number;
-	onNext: any;
-	onPrevious: any;
-	onPageSet: any;
+	onNext: () => void;
+	onPrevious: () => void;
+	onPageSet: (page: number) => void;
 	pages: number;
 	paginationLimit: number;
 }

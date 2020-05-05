@@ -4,8 +4,9 @@ import './table.scss';
 import TablePagination from '../TablePagination/TablePagination';
 import TableRows from '../TableRow/TableRow';
 import { TableElementProps } from './tableInterface';
+import { RestaurantData } from '../../api/interface';
 
-export const getRowSlice = (currentPage: number, limit: number, data: any) => {
+export const getRowSlice = (currentPage: number, limit: number, data: RestaurantData[]) => {
 	const start = currentPage * limit;
 	const end = currentPage === 0 ? limit : limit * (currentPage + 1);
 	return JSON.parse(JSON.stringify(data)).slice(start, end);
@@ -15,7 +16,7 @@ const TableElement = (props: TableElementProps) => {
 	const { columnKeys, data, paginationLimit, onSort } = props;
 	const [pages, setPages] = useState<number>();
 	const [currentPage, setCurrentPage] = useState<number>();
-	const [rowData, setRowData] = useState<any>();
+	const [rowData, setRowData] = useState<RestaurantData[]>();
 
 	useEffect(() => {
 		setCurrentPage(0);

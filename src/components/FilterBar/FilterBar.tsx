@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, KeyboardEvent, ChangeEvent } from 'react';
 import Dropdown, { Option } from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './filterBar.scss';
-import { FilterBarProps } from './filterBarInterface';
+import { FilterBarProps, FilterValue } from './filterBarInterface';
+import { RestaurantData } from '../../api/interface';
 
 /**
  * Filter bar for Restaurant Table
@@ -12,7 +13,7 @@ import { FilterBarProps } from './filterBarInterface';
  */
 const FilterBar = (props: FilterBarProps) => {
 	const { data, onFilter, onSearch } = props;
-	const [filterValues, setFilterValues] = useState<any>();
+	const [filterValues, setFilterValues] = useState<FilterValue[]>();
 	const [attireFilter, setAttireFilter] = useState<Option>();
 	const [genreFilter, setGenreFilter] = useState<Option>();
 	const [searchFilter, setSearchFilter] = useState<string>();
@@ -32,13 +33,15 @@ const FilterBar = (props: FilterBarProps) => {
 				options = Array.from(
 					new Set(
 						data
-							.map((item: any) => (item as any)[filter])
+							.map((item: RestaurantData) => (item as any)[filter])
 							.reduce((a: any, b: any) => a.concat(b), [])
 							.sort((a: any, b: any) => (a > b ? 1 : -1))
 					)
 				);
 			} else {
-				options = Array.from(new Set(data.map((item: any) => item[filter].toLowerCase()).sort((a: any, b: any) => (a > b ? 1 : -1))));
+				options = Array.from(
+					new Set(data.map((item: RestaurantData) => (item as any)[filter].toLowerCase()).sort((a: any, b: any) => (a > b ? 1 : -1)))
+				);
 			}
 			return { label: filter, values: options };
 		});
@@ -65,7 +68,7 @@ const FilterBar = (props: FilterBarProps) => {
 		}
 	}, [genreFilter]);
 
-	const keyPress = (e: any) => {
+	const keyPress = (e: KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter') {
 			e.preventDefault();
 			onSearch(searchFilter);
@@ -86,7 +89,7 @@ const FilterBar = (props: FilterBarProps) => {
 			<Dropdown
 				controlClassName={'filter-main'}
 				key={'state'}
-				options={filterValues?.find((f: any) => f.label === 'state').values}
+				options={filterValues?.find((f: FilterValue) => f.label === 'state').values}
 				placeholder={`Filter By State`}
 				placeholderClassName={`filter-placeholder`}
 				menuClassName={'filter-menu'}
@@ -98,7 +101,7 @@ const FilterBar = (props: FilterBarProps) => {
 			<Dropdown
 				controlClassName={'filter-main'}
 				key={'genre'}
-				options={filterValues?.find((f: any) => f.label === 'genre').values}
+				options={filterValues?.find((f: FilterValue) => f.label === 'genre').values}
 				placeholder={`Filter By Genre`}
 				placeholderClassName={`filter-placeholder`}
 				menuClassName={'filter-menu'}
@@ -110,7 +113,7 @@ const FilterBar = (props: FilterBarProps) => {
 			<Dropdown
 				controlClassName={'filter-main'}
 				key={'attire'}
-				options={filterValues?.find((f: any) => f.label === 'attire').values}
+				options={filterValues?.find((f: FilterValue) => f.label === 'attire').values}
 				placeholder={`Filter By Attire`}
 				placeholderClassName={`filter-placeholder`}
 				menuClassName={'filter-menu'}
@@ -125,7 +128,7 @@ const FilterBar = (props: FilterBarProps) => {
 						className={'search-input'}
 						type="text"
 						defaultValue={searchFilter}
-						onChange={(e: any) => setSearchFilter(e.target.value)}
+						onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchFilter(e.target.value)}
 						onKeyPress={keyPress}
 						placeholder={'Search Restaurants'}
 					/>

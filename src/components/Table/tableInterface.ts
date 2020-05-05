@@ -12,7 +12,7 @@ export interface TableElementProps {
 	/**
 	 * on sort call
 	 */
-	onSort: any;
+	onSort: (sort: string) => void;
 	/**
 	 * Limit of items to show per page
 	 */

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import { Sunrise, Sunset } from 'react-feather';
 import './theme.scss';
 
@@ -42,7 +42,7 @@ const applyTheme = (t: string): void => {
 	});
 };
 
-const ThemeControl = () => {
+const ThemeControl = (): ReactElement => {
 	const [theme, setTheme] = useState(initTheme);
 	const [isDark, setIsDark] = useState(true);
 
