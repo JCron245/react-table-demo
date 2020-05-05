@@ -3,18 +3,12 @@ import React, { useState, useEffect } from 'react';
 import Dropdown, { Option } from 'react-dropdown';
 import 'react-dropdown/style.css';
 import './filterBar.scss';
-
-export interface FilterBarProps {
-	data: any;
-	onFilter?: any;
-	onSearch?: any;
-}
+import { FilterBarProps } from './filterBarInterface';
 
 /**
  * Filter bar for Restaurant Table
  *
  * This holds the state, genre, and attire filters
- * @param props
  */
 const FilterBar = (props: FilterBarProps) => {
 	const { data, onFilter, onSearch } = props;

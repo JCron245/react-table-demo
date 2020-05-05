@@ -3,7 +3,6 @@ import './restaurantDetail.scss';
 
 export const RestaurantDetail = (props: any) => {
 	const { item } = props.location.state;
-	console.log(item);
 	return (
 		<div className={'restaurant-detail'}>
 			<h1 className={'title'}>Restaurant Details</h1>

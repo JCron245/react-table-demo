@@ -1,16 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import './tablePagination.scss';
+import { TablePaginationProps } from './tablePaginationInterface';
+import { ArrowLeft, ArrowRight } from 'react-feather';
 
-export interface FilterBarProps {
-	currentPage: number;
-	onNext: any;
-	onPrevious: any;
-	onPageSet?: any;
-	pages: number;
-	paginationLimit: number;
-}
-const TablePagination = (props: FilterBarProps) => {
+const TablePagination = (props: TablePaginationProps) => {
 	const { onNext, onPageSet, onPrevious, pages } = props;
 
 	const pageBoxes = () => {
@@ -26,13 +20,13 @@ const TablePagination = (props: FilterBarProps) => {
 	};
 
 	return (
-		<div style={{ display: 'flex', justifyContent: 'space-between', margin: '2rem' }}>
-			<button onClick={onPrevious} className={'page-btn page-control-btn'}>
-				Previous
+		<div className={'pagination-container'}>
+			<button onClick={onPrevious} className={'page-btn page-control-btn'} aria-label={'previous page'}>
+				<ArrowLeft size={20} /> Previous
 			</button>
 			{pageBoxes()}
-			<button onClick={onNext} className={'page-btn page-control-btn'}>
-				Next
+			<button onClick={onNext} className={'page-btn page-control-btn'} aria-label={'next page'}>
+				Next <ArrowRight size={20} />
 			</button>
 		</div>
 	);

@@ -26,3 +26,7 @@ Simple easy to use Dropdown component for React - was ideal for this project bec
 
 ## [Eslint](https://eslint.org/), [Husky](https://github.com/typicode/husky), [Lint Staged](https://github.com/okonet/lint-staged)
 Eslint comes out of the box with create react app but we can further modify it with plugins or our own rules. Another thing I like to do with projects is setup Husky and Lint-Staged so that on git certain git commands we can perform certain actions. Generally I like to set it up so that on commit the project is linted/prettified (must pass linting for commit to succeed). Then on push it must past a build check before it will actually push. This helps weed out a ton of issues from ever ending up in a PR as well as keeping the code base clean and well styled.
+
+
+## [Feather Icons](https://feathericons.com/), [React Feather](https://github.com/feathericons/react-feather)
+Some fun open source icons

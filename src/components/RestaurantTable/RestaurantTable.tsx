@@ -25,7 +25,6 @@ const RestaurantTable = () => {
 	 * On component mount we will get the data
 	 */
 	useEffect(() => {
-		console.log('Render');
 		getRestaurantData().then((res: RestaurantData[]) => {
 			setData(res);
 			setFilteredData(res);
@@ -79,7 +78,6 @@ const RestaurantTable = () => {
 			// otherwise reset to ascending order
 			setSortName(sort);
 			setSortAscending(sort === sortName ? !sortAscending : true);
-			console.log('Sort Name:', sortName);
 		}
 	};
 

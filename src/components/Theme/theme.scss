@@ -1,0 +1,30 @@
+.theme-btn {
+	border: none;
+	border-radius: 50%;
+	bottom: 1rem;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+	padding: 0.75rem;
+	position: fixed;
+	right: 1rem;
+	&.dark {
+		background: linear-gradient(40deg, #ff0080, #ff8c00 70%);
+		&:hover {
+			background: linear-gradient(40deg, #d9006d, #d97700 70%);
+		}
+	}
+	&.light {
+		background: linear-gradient(40deg, #8983f7, #a3dafb 70%);
+		&:hover {
+			background: linear-gradient(40deg, #675ff5, #7ecbf9 70%);
+		}
+	}
+	&:focus {
+		outline: none !important;
+	}
+}
+
+.theme-icon {
+	height: 1.5rem;
+	outline: none;
+	width: 1.5rem;
+}

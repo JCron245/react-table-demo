@@ -1,34 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback, memo } from 'react';
-import { RestaurantData } from '../../api/interface';
 import './table.scss';
 import TablePagination from '../TablePagination/TablePagination';
 import TableRows from '../TableRow/TableRow';
+import { TableElementProps } from './tableInterface';
 
 export const getRowSlice = (currentPage: number, limit: number, data: any) => {
 	const start = currentPage * limit;
 	const end = currentPage === 0 ? limit : limit * (currentPage + 1);
 	return JSON.parse(JSON.stringify(data)).slice(start, end);
 };
-
-export interface TableElementProps {
-	/**
-	 * Which properties from the data we want to show in the table ui (which columns to show)
-	 */
-	columnKeys: string[];
-	/**
-	 * The data to be represented
-	 */
-	data: RestaurantData[];
-	/**
-	 * on sort call
-	 */
-	onSort: any;
-	/**
-	 * Limit of items to show per page
-	 */
-	paginationLimit: number;
-}
 
 const TableElement = (props: TableElementProps) => {
 	const { columnKeys, data, paginationLimit, onSort } = props;
