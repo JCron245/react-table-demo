@@ -56,7 +56,7 @@ Eslint comes out of the box with create react app but we can further modify it w
 Some fun open source icons
 
 ### Theme
-I provided a simple light and dark theme. Upon visiting the site it will attempt to determine what your OS level theme setting is and use the preferred theme, if not it defaults to dark.
+I provided a simple light and dark theme. Upon visiting the site it will attempt to determine what your OS level theme setting is and use the preferred theme, if not it defaults to dark. All colors pass accessibility color contrast guidelines.
 
 ### [Linode](), [Nginx](https://www.nginx.com/)
 My personal server is on Linode and I am currently using NGINX as my web server. I am serving up this demo, a custom color tool [Cron Color](https://croncolor.com), and my personal webpage [Jon Cornwell](https://joncornwell.com)

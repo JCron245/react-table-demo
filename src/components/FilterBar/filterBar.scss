@@ -16,7 +16,11 @@
 		margin-right: 0.5rem;
 	}
 	.search-input {
+		background-color: var(--background);
+		border: 1px solid var(--accent);
+		box-shadow: var(--box-shadow);
 		color: var(--text);
+		padding: 0.15rem 1rem;
 	}
 	.search-btn {
 		background-color: var(--accent);
