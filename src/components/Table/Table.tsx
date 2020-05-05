@@ -5,6 +5,7 @@ import TablePagination from '../TablePagination/TablePagination';
 import TableRows from '../TableRow/TableRow';
 import { TableElementProps } from './tableInterface';
 import { RestaurantData } from '../../api/interface';
+import { Frown } from 'react-feather';
 
 export const getRowSlice = (currentPage: number, limit: number, data: RestaurantData[]) => {
 	const start = currentPage * limit;
@@ -67,20 +68,28 @@ const TableElement = (props: TableElementProps) => {
 
 	return (
 		<section className={'table-element-container'}>
-			<table className={'table-element'}>
-				<thead className={'table-element-head'}>{createHeader()}</thead>
-				<tbody className={'table-element-body'}>
-					<TableRows columnKeys={columnKeys} rowData={rowData} />
-				</tbody>
-			</table>
-			<TablePagination
-				onPageSet={setCurrentPage}
-				currentPage={currentPage || 0}
-				onPrevious={previous}
-				onNext={next}
-				pages={pages || 0}
-				paginationLimit={paginationLimit}
-			/>
+			{data.length > 0 ? (
+				<>
+					<table className={'table-element'}>
+						<thead className={'table-element-head'}>{createHeader()}</thead>
+						<tbody className={'table-element-body'}>
+							<TableRows columnKeys={columnKeys} rowData={rowData} />
+						</tbody>
+					</table>
+					<TablePagination
+						onPageSet={setCurrentPage}
+						currentPage={currentPage || 0}
+						onPrevious={previous}
+						onNext={next}
+						pages={pages || 0}
+						paginationLimit={paginationLimit}
+					/>
+				</>
+			) : (
+				<div className={'table-element-no-data'}>
+					Sorry there is no data available that matches this criteria <Frown />
+				</div>
+			)}
 		</section>
 	);
 };

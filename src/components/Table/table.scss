@@ -4,10 +4,15 @@
 		overflow-x: scroll;
 		width: 100vw;
 	}
+	.table-element-no-data {
+		text-align: center;
+		padding: 5rem;
+		width: 100%;
+	}
+
 	.table-element {
 		background-color: var(--background);
 		width: 100%;
-
 		.table-element-head-row {
 			background-color: var(--background);
 		}
