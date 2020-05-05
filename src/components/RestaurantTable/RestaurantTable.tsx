@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState, useCallback } from "react";
-import "./restaurantTable.scss";
-import { getRestaurantData } from "../../api/restaurant";
-import { RestaurantData } from "../../api/interface";
-import TableElement from "../Table/Table";
-import "react-dropdown/style.css";
-import FilterBar from "../FilterBar/FilterBar";
+import React, { useEffect, useState, useCallback } from 'react';
+import './restaurantTable.scss';
+import { getRestaurantData } from '../../api/restaurant';
+import { RestaurantData } from '../../api/interface';
+import TableElement from '../Table/Table';
+import 'react-dropdown/style.css';
+import FilterBar from '../FilterBar/FilterBar';
 
 const RestaurantTable = () => {
 	const [data, setData] = useState<RestaurantData[]>();
@@ -19,27 +19,22 @@ const RestaurantTable = () => {
 	/**
 	 * These are the columns to show
 	 */
-	const [columnKeys] = useState([
-		"name",
-		"city",
-		"state",
-		"telephone",
-		"genre",
-	]);
+	const [columnKeys] = useState(['name', 'city', 'state', 'telephone', 'genre']);
 
 	/**
 	 * On component mount we will get the data
 	 */
 	useEffect(() => {
+		console.log('Render');
 		getRestaurantData().then((res: RestaurantData[]) => {
 			setData(res);
 			setFilteredData(res);
 			setSortAscending(true);
-			setSortName("name");
-			setStateFilter("");
-			setSearchFilter("");
-			setGenreFilter("");
-			setAttireFilter("");
+			setSortName('name');
+			setStateFilter('');
+			setSearchFilter('');
+			setGenreFilter('');
+			setAttireFilter('');
 		});
 	}, []);
 
@@ -51,29 +46,26 @@ const RestaurantTable = () => {
 	 */
 	useEffect(() => {
 		let filtered = data;
-		if (searchFilter !== "" && searchFilter !== undefined) {
+		if (searchFilter !== '' && searchFilter !== undefined) {
 			filtered = filtered?.filter((item) => {
 				return (
 					item.name.toLowerCase().includes(searchFilter.toLowerCase()) ||
 					item.city.toLowerCase().includes(searchFilter.toLowerCase()) ||
-					item.genre
-						.toString()
-						.toLowerCase()
-						.includes(searchFilter.toLowerCase())
+					item.genre.toString().toLowerCase().includes(searchFilter.toLowerCase())
 				);
 			});
 		}
-		if (stateFilter !== "" && stateFilter !== undefined) {
+		if (stateFilter !== '' && stateFilter !== undefined) {
 			filtered = filtered?.filter((item) => {
 				return item.state.toLowerCase() === stateFilter.toLowerCase();
 			});
 		}
-		if (genreFilter !== "" && genreFilter !== undefined) {
+		if (genreFilter !== '' && genreFilter !== undefined) {
 			filtered = filtered?.filter((item) => {
 				return item.genre.includes(genreFilter);
 			});
 		}
-		if (attireFilter !== "" && attireFilter !== undefined) {
+		if (attireFilter !== '' && attireFilter !== undefined) {
 			filtered = filtered?.filter((item) => {
 				return item.attire.toLowerCase() === attireFilter.toLowerCase();
 			});
@@ -85,8 +77,9 @@ const RestaurantTable = () => {
 		if (sort) {
 			// If we sort by the same property again flip the sort around,
 			// otherwise reset to ascending order
-			setSortAscending(sort === sortName ? !sortAscending : true);
 			setSortName(sort);
+			setSortAscending(sort === sortName ? !sortAscending : true);
+			console.log('Sort Name:', sortName);
 		}
 	};
 
@@ -104,18 +97,18 @@ const RestaurantTable = () => {
 			});
 			setFilteredData(sorted);
 		}
-	}, [sortName, sortAscending]);
+	}, [sortName, sortAscending, sortAscending]);
 
 	const onFilter = (filter: any) => {
 		const { label, value } = filter;
 		switch (label) {
-			case "state":
+			case 'state':
 				setStateFilter(value);
 				break;
-			case "genre":
+			case 'genre':
 				setGenreFilter(value);
 				break;
-			case "attire":
+			case 'attire':
 				setAttireFilter(value);
 				break;
 			default:
@@ -125,30 +118,17 @@ const RestaurantTable = () => {
 
 	const filterBar = useCallback(() => {
 		if (!data) return null;
-		return (
-			<FilterBar
-				data={data}
-				onFilter={(v: any) => onFilter(v)}
-				onSearch={setSearchFilter}
-			/>
-		);
-	}, [data]);
+		return <FilterBar data={data} onFilter={(v: any) => onFilter(v)} onSearch={setSearchFilter} />;
+	}, [data, sortName]);
 
 	return (
-		<main className={"main"}>
-			<h1>Restaurant Table</h1>
-			<div>
+		<div className={'restaurant-table'}>
+			<h1 className={'title'}>Restaurant Table</h1>
+			<div className={'content'}>
 				{filterBar()}
-				{filteredData && (
-					<TableElement
-						onSort={onSort}
-						data={filteredData}
-						columnKeys={columnKeys}
-						paginationLimit={10}
-					/>
-				)}
+				{filteredData && <TableElement onSort={onSort} data={filteredData} columnKeys={columnKeys} paginationLimit={10} />}
 			</div>
-		</main>
+		</div>
 	);
 };
 

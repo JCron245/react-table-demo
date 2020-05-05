@@ -1,5 +1,12 @@
-.main {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
+.restaurant-table {
+	max-width: 1400px;
+	width: 100%;
+	.title {
+		align-self: flex-start;
+		margin-bottom: 2rem;
+	}
+
+	.content {
+		width: 100%;
+	}
 }

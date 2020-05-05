@@ -1,23 +1,43 @@
+@import '../../styles/colors.scss';
+
 .filters {
 	align-items: center;
-	background-color: #444;
+	background-color: $background;
 	display: flex;
 	justify-content: space-between;
-	margin: 0 auto;
-	padding: 1rem;
-	.search-label {
-		margin-bottom: 0;
-		text-align: center;
+	margin-bottom: 2rem;
+	width: 100%;
+	.search-container {
+		align-items: center;
+		display: flex;
+		justify-content: center;
 		width: 25%;
 	}
+	.search-label {
+		margin-bottom: 0;
+		margin-right: 0.5rem;
+	}
 	.search-input {
-		margin-left: 1rem;
+		color: $text;
+	}
+	.search-btn {
+		background-color: $accent;
+		border: none;
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+		font-size: 1rem;
+		min-width: 6ch;
+		width: 30%;
 	}
 	.filter {
 		padding-right: 1.5rem;
 		width: 25%;
 	}
+	.filter-main {
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+		cursor: pointer;
+	}
 	.filter-menu {
+		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 		font-weight: bold;
 	}
 }

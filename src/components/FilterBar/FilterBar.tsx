@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Dropdown, { Option } from "react-dropdown";
-import "react-dropdown/style.css";
-import "./filterBar.scss";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
+import Dropdown, { Option } from 'react-dropdown';
+import 'react-dropdown/style.css';
+import './filterBar.scss';
 
 export interface FilterBarProps {
 	data: any;
@@ -29,11 +30,11 @@ const FilterBar = (props: FilterBarProps) => {
 	 * both strings while genre is a string array
 	 */
 	useEffect(() => {
-		setSearchFilter("");
-		const filterLabels = ["state", "genre", "attire"];
+		setSearchFilter('');
+		const filterLabels = ['state', 'genre', 'attire'];
 		const filtersObj = filterLabels.map((filter: string) => {
 			let options;
-			if (filter === "genre") {
+			if (filter === 'genre') {
 				options = Array.from(
 					new Set(
 						data
@@ -43,15 +44,9 @@ const FilterBar = (props: FilterBarProps) => {
 					)
 				);
 			} else {
-				options = Array.from(
-					new Set(
-						data
-							.map((item: any) => item[filter].toLowerCase())
-							.sort((a: any, b: any) => (a > b ? 1 : -1))
-					)
-				);
+				options = Array.from(new Set(data.map((item: any) => item[filter].toLowerCase()).sort((a: any, b: any) => (a > b ? 1 : -1))));
 			}
-			if (options) return { label: filter, values: options };
+			return { label: filter, values: options };
 		});
 		if (filtersObj) {
 			setFilterValues(filtersObj);
@@ -60,71 +55,82 @@ const FilterBar = (props: FilterBarProps) => {
 
 	useEffect(() => {
 		if (stateFilter) {
-			onFilter({ label: "state", value: stateFilter.value });
+			onFilter({ label: 'state', value: stateFilter.value });
 		}
 	}, [stateFilter]);
 
 	useEffect(() => {
 		if (attireFilter) {
-			onFilter({ label: "attire", value: attireFilter.value });
+			onFilter({ label: 'attire', value: attireFilter.value });
 		}
 	}, [attireFilter]);
 
 	useEffect(() => {
 		if (genreFilter) {
-			onFilter({ label: "genre", value: genreFilter.value });
+			onFilter({ label: 'genre', value: genreFilter.value });
 		}
 	}, [genreFilter]);
 
 	const keyPress = (e: any) => {
-		if (e.key === "Enter") {
+		if (e.key === 'Enter') {
+			e.preventDefault();
 			onSearch(searchFilter);
 		}
 	};
 
+	const enterPress = () => onSearch(searchFilter);
+
 	return (
-		<div className={"filters"}>
+		<form className={'filters'}>
 			<Dropdown
-				key={"state"}
-				options={filterValues?.find((f: any) => f.label === "state").values}
+				controlClassName={'filter-main'}
+				key={'state'}
+				options={filterValues?.find((f: any) => f.label === 'state').values}
 				placeholder={`Filter By State`}
 				placeholderClassName={`filter-placeholder`}
-				menuClassName={"filter-menu"}
-				className={"filter"}
+				menuClassName={'filter-menu'}
+				className={'filter'}
 				onChange={setStateFilter}
 				value={stateFilter}
 			/>
 			<Dropdown
-				key={"genre"}
-				options={filterValues?.find((f: any) => f.label === "genre").values}
+				controlClassName={'filter-main'}
+				key={'genre'}
+				options={filterValues?.find((f: any) => f.label === 'genre').values}
 				placeholder={`Filter By Genre`}
 				placeholderClassName={`filter-placeholder`}
-				menuClassName={"filter-menu"}
-				className={"filter"}
+				menuClassName={'filter-menu'}
+				className={'filter'}
 				onChange={setGenreFilter}
 				value={genreFilter}
 			/>
 			<Dropdown
-				key={"attire"}
-				options={filterValues?.find((f: any) => f.label === "attire").values}
+				controlClassName={'filter-main'}
+				key={'attire'}
+				options={filterValues?.find((f: any) => f.label === 'attire').values}
 				placeholder={`Filter By Attire`}
 				placeholderClassName={`filter-placeholder`}
-				menuClassName={"filter-menu"}
-				className={"filter"}
+				menuClassName={'filter-menu'}
+				className={'filter'}
 				onChange={setAttireFilter}
 				value={attireFilter}
 			/>
-			<label className={"search-label"}>
-				Search:
-				<input
-					className={"search-input"}
-					type="text"
-					defaultValue={searchFilter}
-					onChange={(e: any) => setSearchFilter(e.target.value)}
-					onKeyPress={keyPress}
-				/>
-			</label>
-		</div>
+			<div className={'search-container'}>
+				<label className={'search-label'} aria-label={'Search restaurants'}>
+					<input
+						className={'search-input'}
+						type="text"
+						defaultValue={searchFilter}
+						onChange={(e: any) => setSearchFilter(e.target.value)}
+						onKeyPress={keyPress}
+						placeholder={'Search Restaurants'}
+					/>
+				</label>
+				<button type="button" onClick={enterPress} className={'search-btn'}>
+					Search
+				</button>
+			</div>
+		</form>
 	);
 };
 
