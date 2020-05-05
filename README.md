@@ -5,10 +5,6 @@
 ## Getting Started
 To get the project up and running:
 
-### Prerequisites
-
-- `>= Node 10.0.0`
-
 ### Installing
 
 - Clone this git repository: `git clone <repo>`
