@@ -31,10 +31,6 @@ const RestaurantTable = () => {
 			setFilteredData(res);
 			setSortAscending(true);
 			setSortName('name');
-			setStateFilter('');
-			setSearchFilter('');
-			setGenreFilter('');
-			setAttireFilter('');
 		});
 	}, []);
 
@@ -120,12 +116,14 @@ const RestaurantTable = () => {
 		return <FilterBar data={data} onFilter={(v: any) => onFilter(v)} onSearch={setSearchFilter} />;
 	}, [data, sortName]);
 
+	if (!filteredData) return null;
+
 	return (
 		<div className={'restaurant-table'}>
 			<h1 className={'title'}>Restaurant Table</h1>
 			<div className={'content'}>
 				{filterBar()}
-				{filteredData && <TableElement onSort={onSort} data={filteredData} columnKeys={columnKeys} paginationLimit={10} />}
+				<TableElement onSort={onSort} data={filteredData} columnKeys={columnKeys} paginationLimit={10} />
 			</div>
 		</div>
 	);
