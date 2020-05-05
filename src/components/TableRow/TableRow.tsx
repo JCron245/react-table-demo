@@ -15,7 +15,9 @@ const TableRows = (props: any) => {
 					if (key === 'name') {
 						return (
 							<td key={elementKey} className={classNames}>
-								<Link to={{ pathname: '/details', state: { item } }}>{value}</Link>
+								<Link className={'table-element-cell-link'} to={{ pathname: '/details', state: { item } }}>
+									{value}
+								</Link>
 							</td>
 						);
 					}

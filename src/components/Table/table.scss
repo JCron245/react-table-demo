@@ -54,10 +54,11 @@
 			&.genre {
 				width: 30%;
 			}
-			a {
-				color: var(--link);
-				text-decoration: underline;
-			}
+		}
+		.table-element-cell-link {
+			color: var(--link);
+			font-size: 1.1rem;
+			text-decoration: underline;
 		}
 	}
 }
