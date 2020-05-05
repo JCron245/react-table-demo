@@ -6,6 +6,11 @@ import './filterBar.scss';
 import { FilterBarProps, FilterValue } from './filterBarInterface';
 import { RestaurantData } from '../../api/interface';
 
+const capitalize = (s: string) => {
+	if (typeof s !== 'string') return '';
+	return s.charAt(0).toUpperCase() + s.slice(1);
+};
+
 /**
  * Filter bar for Restaurant Table
  *
@@ -43,6 +48,7 @@ const FilterBar = (props: FilterBarProps) => {
 					new Set(data.map((item: RestaurantData) => (item as any)[filter].toLowerCase()).sort((a: any, b: any) => (a > b ? 1 : -1)))
 				);
 			}
+			options.unshift({ label: `Filter By ${capitalize(filter)}`, value: '' });
 			return { label: filter, values: options };
 		});
 		if (filtersObj) {

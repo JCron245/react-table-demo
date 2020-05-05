@@ -42,7 +42,7 @@ const RestaurantTable = () => {
 	 */
 	useEffect(() => {
 		let filtered = data;
-		if (searchFilter !== '' && searchFilter !== undefined) {
+		if (searchFilter) {
 			filtered = filtered?.filter((item) => {
 				return (
 					item.name.toLowerCase().includes(searchFilter.toLowerCase()) ||
@@ -51,17 +51,17 @@ const RestaurantTable = () => {
 				);
 			});
 		}
-		if (stateFilter !== '' && stateFilter !== undefined) {
+		if (stateFilter) {
 			filtered = filtered?.filter((item) => {
 				return item.state.toLowerCase() === stateFilter.toLowerCase();
 			});
 		}
-		if (genreFilter !== '' && genreFilter !== undefined) {
+		if (genreFilter) {
 			filtered = filtered?.filter((item) => {
 				return item.genre.includes(genreFilter);
 			});
 		}
-		if (attireFilter !== '' && attireFilter !== undefined) {
+		if (attireFilter) {
 			filtered = filtered?.filter((item) => {
 				return item.attire.toLowerCase() === attireFilter.toLowerCase();
 			});
